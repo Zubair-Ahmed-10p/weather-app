@@ -46,8 +46,17 @@ const forecastPromise = ({ lat, long, unit }) => {
       } else {
         const data = response?.body || {};
         const weatherData = data?.current || {};
-        const { temperature, feelslike } = weatherData;
-        const forecastData = `It is ${temperature} degree ${T_UNIT[currentUnit]} out there. And it feels like ${feelslike} degree ${T_UNIT[currentUnit]}.`;
+        const { temperature, feelslike, humidity, weather_descriptions } =
+          weatherData;
+        const forecastData = `It is ${temperature} degree ${
+          T_UNIT[currentUnit]
+        } out there. And it feels like ${feelslike} degree ${
+          T_UNIT[currentUnit]
+        }. And humidity is ${humidity}%. ${
+          weather_descriptions[0]
+            ? `Weather description is ${weather_descriptions[0]}`
+            : ""
+        }`;
         resolve(forecastData);
       }
     });

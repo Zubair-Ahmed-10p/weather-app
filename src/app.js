@@ -5,6 +5,8 @@ const { port } = require("../config");
 
 // utils
 const { weatherForecast } = require("../utils/weather");
+const { goeCode } = require("../utils/geocode");
+const { forecast } = require("../utils/forecast");
 
 const app = express();
 const PORT = port || 3000;
@@ -47,7 +49,7 @@ app.get("/help", (req, res) => {
 });
 
 // with callback
-// app.get("/weather", (req, res) => {
+// app.get("/weatherJson", (req, res) => {
 //   const { address, unit = "m" } = req.query || {};
 //   if (!address) {
 //     return res.send({
